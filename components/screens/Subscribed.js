@@ -1,14 +1,26 @@
 //Importerer nødvendige libraries
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
+import firebase from "firebase/compat";
 
 function SubscribedScreen(){
+/*
+    if (!firebase.auth().signOut()) {
+        return (
+            <View><Text>Not found</Text></View>
+        )
+    }
+
+ */
+
+
+
+
     //Retur der viser et view med tekst
     return(
         <View style={styles.container}>
-            <Text style={styles.text}>
-                Dette er siden for alle de type hobbier man følger
-            </Text>
+            <Text>Current user: {firebase.auth().currentUser.email}</Text>
+
         </View>
     );
 }

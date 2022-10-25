@@ -9,7 +9,7 @@ import firebase from "firebase/compat";
 import LogInScreen from "./components/LogIn";
 import SignUpScreen from "./components/SignUp";
 import HomeScreen from "./components/Home";
-import Home from "./components/Home";
+// import Home from "./components/Home";
 
 //Firebase kontakt
 const firebaseConfig = {
@@ -18,7 +18,8 @@ const firebaseConfig = {
   projectId: "godkendelsesopgave-af286",
   storageBucket: "godkendelsesopgave-af286.appspot.com",
   messagingSenderId: "753624366199",
-  appId: "1:753624366199:web:b0a9f99972119189305a72"
+  appId: "1:753624366199:web:b0a9f99972119189305a72",
+  databaseURL: "https://godkendelsesopgave-af286-default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 //Initierer firebase databasen

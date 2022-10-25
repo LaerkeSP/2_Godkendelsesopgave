@@ -1,14 +1,18 @@
 //Importerer alle libraries
 import React, {useState} from "react";
-import {Button, StyleSheet, Text, TextInput, View} from "react-native";
+import {Alert, Button, StyleSheet, Text, TextInput, View} from "react-native";
 import firebase from "firebase/compat";
 
 //Funktion der håndterer oprettelse af bruger
 //Funktionen tager email, password og setErrorMessage som input
-async function handleSubmit({email, password, setErrorMessage}){
+async function handleSubmit({email, password, name, interests, setErrorMessage}){
     //Funktionen prøver at oprette den nye bruger med email og password og catcher en fejlbesked hvis ikke det lykkedes
     try {
         await firebase.auth().createUserWithEmailAndPassword(email, password).then((data)=>{
+            firebase.database().ref('/User/').push(
+                {email, name, interests}
+            );
+            Alert.alert('Brugeren er oprettet!')
         });
 
     } catch (error){
@@ -20,14 +24,16 @@ function SignUpScreen(){
     //Definerer de forskellige konstanter
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [interests, setInterests] = useState('');
     const [errorMessage, setErrorMessage] = useState(null);
 
     //Funktion der håndterer at opret bruger knappen bliver trykket på
     const signUpButton = () => {
         //Returnerer kaldet til handleSubmit funktionen
         return <Button onPress={() =>
-            handleSubmit({email, password, setErrorMessage})}
-                       title="Login"
+            handleSubmit({email, password, name, interests, setErrorMessage})}
+                       title="Opret bruger"
         />;
     };
 
@@ -48,6 +54,17 @@ function SignUpScreen(){
                 value={password}
                 onChangeText={(password) => setPassword(password)}
                 secureTextEntry
+                style={styles.inputField}
+            />
+            <TextInput
+                placeholder='name'
+                value={name}
+                onChangeText={(name) => setName(name)}
+                style={styles.inputField}
+            />
+            <TextInput
+                placeholder='interests'
+                onChangeText={(interests) => setInterests(interests)}
                 style={styles.inputField}
             />
             {errorMessage && (
