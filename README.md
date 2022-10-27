@@ -10,3 +10,12 @@ Efter at  have siddet med opgaven i noget tid, sidder jeg fanget med at hente da
 
 Jeg er ikke noget lige så langt som jeg havde håbet i dag. Jeg bliver ved med at sidde fast i småfejl, som tager lang tid at løse, selvom de egentlig er meget simple. Lige nu er målet at tage afstand til koden og komme tilbage til den med friske øjne senere. 
 
+### Dag 2
+Denne dag var ikke særlig produktiv. Jeg blev ved med at sidde fast i små fejl, som tog alt for lang tid at løse. Her er det dog stadig gået fremad, da jeg har fundet ud ad hvordan man henter en enkelt bruger. Hertil har jeg også fået ændret måden der bliver uploadet til databasen, så authentication og firestore databaserne bruger de samme id'er for brugerne. Dette har gjort det muligt at hente brugerens oplysninger og har også til formål at fremtidssikre applikationen. 
+
+Dette er dog det eneste fremskridt der er blevet lavet i koden. Dette er lidt skuffende, da det betyder jeg ikke kan lave den store ændring fra sidste godkendelsesopgave, da jeg her har arbejdet mere med database funktionalitet. 
+
+### Dag 3
+Der er nu blevet tilføjet en ændre bruger funktionalitet til appen. Her er det blevet muligt at ændre navnet og interesserne på brugeren, hvorefter det bliver opdateret i databasen. Det blev kort overvejet, hvorvidt mailen også skulle ændres, men da denne bliver brugt til authentication, var det besluttet bare at lade den være. Desværre er det ikke lykkedes at opdatere selve appen med den nye data. selve databasen bliver opdateret, men man skal reloade appen før man kan se ændringerne. 
+
+Generelt er der ikke blevet lavet så meget på appen som ønsket, men da det andet gruppemedlem har større fokus på indhold, hvor jeg har fokus på det mere funktionelle, er dette stadig et skridt i den rigtige retning. 
