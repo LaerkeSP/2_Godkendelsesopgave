@@ -46,7 +46,6 @@ function SignUpScreen(){
         //Returnerer kaldet til handleSubmit funktionen
         return <Button onPress={() =>
             handleSubmit({email, password, name, interests ,setErrorMessage})}
-
                        title="Opret bruger"
         />;
     };
