@@ -2,6 +2,8 @@
 import React, {useState} from "react";
 import {Alert, Button, StyleSheet, Text, TextInput, View} from "react-native";
 import firebase from "firebase/compat";
+import { db } from "../firebase-config";
+import {collection, addDoc, doc, setDoc} from "firebase/firestore";
 
 //Funktion der håndterer oprettelse af bruger
 //Funktionen tager email, password og setErrorMessage som input
@@ -9,16 +11,27 @@ async function handleSubmit({email, password, name, interests, setErrorMessage})
     //Funktionen prøver at oprette den nye bruger med email og password og catcher en fejlbesked hvis ikke det lykkedes
     try {
         await firebase.auth().createUserWithEmailAndPassword(email, password).then((data)=>{
-            firebase.database().ref('/User/').push(
-                {email, name, interests}
-            );
-            Alert.alert('Brugeren er oprettet!')
+            const id = data.user.uid;
+            handleData({email, name, interests, id});
         });
 
     } catch (error){
-        setErrorMessage(error.message)
+        setErrorMessage(error.message);
     }
-}
+};
+
+//funktion der tilføjer brugeren til databasen
+async function handleData({email, name, interests, id}) {
+    //danner den nye bruger med det autogenererede id fra authenticateren
+    //taget fra https://softauthor.com/firebase-firestore-add-document-data-using-setdoc/
+    await setDoc(doc(db, "users", id), {
+        email: email,
+        name: name,
+        interests: interests
+
+    })
+};
+
 
 function SignUpScreen(){
     //Definerer de forskellige konstanter
@@ -32,7 +45,8 @@ function SignUpScreen(){
     const signUpButton = () => {
         //Returnerer kaldet til handleSubmit funktionen
         return <Button onPress={() =>
-            handleSubmit({email, password, name, interests, setErrorMessage})}
+            handleSubmit({email, password, name, interests ,setErrorMessage})}
+
                        title="Opret bruger"
         />;
     };

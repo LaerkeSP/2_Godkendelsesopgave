@@ -19,7 +19,7 @@ function SubscribedScreen(){
     //Retur der viser et view med tekst
     return(
         <View style={styles.container}>
-            <Text>Current user: {firebase.auth().currentUser.email}</Text>
+            <Text>Current user: {firebase.auth().currentUser.uid}</Text>
 
         </View>
     );

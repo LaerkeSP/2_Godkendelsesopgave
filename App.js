@@ -9,9 +9,9 @@ import firebase from "firebase/compat";
 import LogInScreen from "./components/LogIn";
 import SignUpScreen from "./components/SignUp";
 import HomeScreen from "./components/Home";
-// import Home from "./components/Home";
 
 //Firebase kontakt
+
 const firebaseConfig = {
   apiKey: "AIzaSyDoyIDS_N2y1OLE1hKlWplC-MgsliibGgQ",
   authDomain: "godkendelsesopgave-af286.firebaseapp.com",
@@ -19,8 +19,8 @@ const firebaseConfig = {
   storageBucket: "godkendelsesopgave-af286.appspot.com",
   messagingSenderId: "753624366199",
   appId: "1:753624366199:web:b0a9f99972119189305a72",
-  databaseURL: "https://godkendelsesopgave-af286-default-rtdb.europe-west1.firebasedatabase.app/"
 };
+
 
 //Initierer firebase databasen
 if (!firebase.apps.length) {
@@ -28,10 +28,13 @@ if (!firebase.apps.length) {
 }
 
 
+
 //Funktion for bruger der ikke er logget ind
 function guestPage(){
   //Danner en konstant for til at stacke skærme
   const Stack = createStackNavigator();
+
+
 
   //Returnerer de tre screens: Log in og Sign up
   //Disse skærme er stacked og kan derfor kun manureres via knapper
@@ -62,7 +65,7 @@ export default function App() {
     });
   }
 
-
+  //funktion der træder i kræft med det samme siden loader
   useEffect(() => {
     const unsubscribe = onAuthStateChange(setUser);
     return () => {
