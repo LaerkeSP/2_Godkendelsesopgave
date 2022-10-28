@@ -6,21 +6,27 @@ import { db } from "../../firebase-config";
 import { getDoc, doc } from "firebase/firestore";
 
 function DataScreen({navigation}) {
-    //gotten from https://www.youtube.com/watch?v=jCY6DH8F4oc
+    //danner user som useState
     const [user, setUser] = useState([]);
+    //gotten from https://www.youtube.com/watch?v=jCY6DH8F4oc
+    //danner koblingen til databasen og henter dataen via bruger id
     const userID = firebase.auth().currentUser.uid
     const docRef = doc(db, "users", userID);
 
     useEffect(() => {
+        //det første der sker når siden loader
         const getUser = async () => {
             //taget fra https://softauthor.com/firebase-firestore-get-document-by-id/
+            //henter dataen fra databasen
             const data = await getDoc(docRef);
+            //indsætter dataen for user
             setUser(data.data())
         };
         getUser()
     }, [])
 
     return (
+        //viser dataen på siden
         <View style={styles.container}>
             <Text>
                 Navn: {user.name} {'\n'}

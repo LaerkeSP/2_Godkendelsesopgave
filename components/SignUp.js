@@ -28,7 +28,6 @@ async function handleData({email, name, interests, id}) {
         email: email,
         name: name,
         interests: interests
-
     })
 };
 
@@ -85,7 +84,6 @@ function SignUpScreen(){
             )}
             {signUpButton()}
         </View>
-
     )
 }
 

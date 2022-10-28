@@ -1,20 +1,15 @@
 //Importerer nødvendige libraries
-import React, {useEffect, useState} from "react";
-import {Button, FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import firebase from "firebase/compat";
-//import { firebase } from '@react-native-firebase/database';
-import { db } from "../../firebase-config";
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import DataScreen from "./Data";
 import EditScreen from "./Edit";
 
-function SettingsScreen({route, navigation}) {
+function SettingsScreen() {
+    //Danner en stack navigator så man kan gå ind på ændre bruger siden
     const Stack = createStackNavigator();
-
-
     return (
         <Stack.Navigator
+            //sikrer at headeren ikke bliver vist
             screenOptions = {{
                 headerShown: false
             }}
@@ -27,15 +22,3 @@ function SettingsScreen({route, navigation}) {
 
 export default SettingsScreen
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'lightcyan',
-    },
-    text: {
-        fontSize: 20,
-        margin: 20
-    },
-});

@@ -1,3 +1,4 @@
+//importerer relevante libraries
 import React, {useState} from "react";
 import {Alert, Button, StyleSheet, Text, TextInput, View} from "react-native";
 import { doc, updateDoc } from "firebase/firestore";
@@ -6,33 +7,38 @@ import firebase from "firebase/compat";
 
 
 function EditScreen({navigation}){
+    //deklærer name og interest states
     const [name, setName] = useState('');
     const [interests, setInterests] = useState('');
+    //deklærer databasen
     const userID = firebase.auth().currentUser.uid
     const docRef = doc(db, "users", userID);
+    //deklærer errormessage
     const [errorMessage, setErrorMessage] = useState(null);
 
 
     const editData = async () => {
+        //danner dataen der skal sendes til databasen
         const data = {
             name: name,
             interests: interests
         }
+        //try catch hvis der sker en fejl
         try {
             //taget fra https://softauthor.com/firebase-firestore-update-document-data-updatedoc/
+            //kald til firestore databasen der inkluderer referencen og dataen
             await updateDoc(docRef, data).then(() => {
                 Alert.alert('Din bruger er blevet opdateret!!!')
-                //navigation.navigate('data');
                 navigation.goBack()
             })
         } catch (error){
             setErrorMessage(error.message);
         }
-
     }
 
 
     return(
+        //inputfelter for navn og interesser, da de er de eneste der skal kunne blive ændret
         <View style={styles.border}>
             <Text style={styles.header}>Ændre bruger</Text>
             <TextInput

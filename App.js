@@ -1,5 +1,4 @@
 //Importing libraries
-import {StyleSheet} from 'react-native';
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import React, {useEffect, useState} from "react";
@@ -11,7 +10,6 @@ import SignUpScreen from "./components/SignUp";
 import HomeScreen from "./components/Home";
 
 //Firebase kontakt
-
 const firebaseConfig = {
   apiKey: "AIzaSyDoyIDS_N2y1OLE1hKlWplC-MgsliibGgQ",
   authDomain: "godkendelsesopgave-af286.firebaseapp.com",
@@ -79,14 +77,5 @@ export default function App() {
       user.loggedIn ? <HomeScreen /> : guestPage()
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 
